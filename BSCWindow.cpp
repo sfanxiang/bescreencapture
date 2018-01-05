@@ -170,9 +170,9 @@ BSCWindow::MessageReceived(BMessage *message)
 				BView* advancedView = advancedGroup->ChildAt(0);
 				BView* infoView = infoGroup->ChildAt(0);
 
-				outputView.RemoveSelf(); delete outputView;
-				advancedView.RemoveSelf(); delete advancedView;
-				infoView.RemoveSelf(); delete infoView;
+				outputView->RemoveSelf(); delete outputView;
+				advancedView->RemoveSelf(); delete advancedView;
+				infoView->RemoveSelf(); delete infoView;
 
 				outputView = new OutputView(fController);
 				advancedView = new AdvancedView(fController);
