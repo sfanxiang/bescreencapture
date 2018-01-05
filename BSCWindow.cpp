@@ -162,7 +162,7 @@ BSCWindow::MessageReceived(BMessage *message)
 			if ((new BAlert("", "Reset to default settings?", "Yes", "No",
 				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go() == 0) {
 
-				fSettings settings;
+				Settings settings;
 				settings.SetDefaults();
 				// TODO
 			}
@@ -286,7 +286,7 @@ BSCWindow::_BuildMenu()
 	BMenuItem* quitItem = new BMenuItem("Quit", new BMessage(B_QUIT_REQUESTED));
 
 	menu->AddItem(resetSettingsItem);
-	menu->AddSeperatorItem();
+	menu->AddSeparatorItem();
 	menu->AddItem(aboutItem);
 	menu->AddItem(quitItem);
 	fMenuBar->AddItem(menu);
