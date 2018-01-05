@@ -7,6 +7,7 @@
 #include "SizeControl.h"
 #include "Utils.h"
 
+#include <Alert.h>
 #include <Alignment.h>
 #include <Bitmap.h>
 #include <Box.h>
