@@ -185,8 +185,7 @@ BSCWindow::MessageReceived(BMessage *message)
 				BLayoutBuilder::Group<>(infoGroup)
 					.Add(infoView);
 
-				static_cast<OutputView*>(outputView)
-					->UpdatePreviewFromSettings();
+				PostMessage(kSelectionWindowClosed);
 			}
 			break;
 
