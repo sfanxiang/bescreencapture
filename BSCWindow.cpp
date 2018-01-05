@@ -184,6 +184,9 @@ BSCWindow::MessageReceived(BMessage *message)
 					.Add(advancedView);
 				BLayoutBuilder::Group<>(infoGroup)
 					.Add(infoView);
+
+				static_cast<OutputView*>(outputView)
+					->updatePreviewFromSettings();
 			}
 			break;
 

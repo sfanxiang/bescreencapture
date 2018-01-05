@@ -3,7 +3,6 @@
 #include <cstdio>
 
 #include <AbstractLayout.h>
-#include <Alert.h>
 #include <Alignment.h>
 #include <Bitmap.h>
 #include <GroupLayout.h>
@@ -126,8 +125,6 @@ PreviewView::Update(const BRect* rect, BBitmap* bitmap)
 			destRect,
 			B_FOLLOW_TOP|B_FOLLOW_LEFT, B_FILTER_BITMAP_BILINEAR);
 		Invalidate();
-		(new BAlert("", "1", "OK", "Cancel",
-				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go();
 	}
 }
 
