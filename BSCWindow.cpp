@@ -158,6 +158,15 @@ BSCWindow::MessageReceived(BMessage *message)
 			be_app->PostMessage(B_ABOUT_REQUESTED);
 			break;
 
+		case kResetSettings:
+			if ((new BAlert("", "Reset to default settings?", "Yes", "No",
+				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go() == 0) {
+
+				fSettings settings;
+				settings.SetDefaults();
+				// TODO
+			}
+
 		case kGUIOpenMediaWindow:
 			(new OptionsWindow(fController))->Show();
 			break;
@@ -270,8 +279,13 @@ void
 BSCWindow::_BuildMenu()
 {
 	BMenu* menu = new BMenu("File");
+	BMenuItem* resetSettingsItem = new BMenuItem(
+		"Reset to default settings...", new BMessage(kResetSettings));
 	BMenuItem* aboutItem = new BMenuItem("About", new BMessage(B_ABOUT_REQUESTED));
 	BMenuItem* quitItem = new BMenuItem("Quit", new BMessage(B_QUIT_REQUESTED));
+
+	menu->AddItem(resetSettingsItem);
+	menu->AddSeperatorItem();
 	menu->AddItem(aboutItem);
 	menu->AddItem(quitItem);
 	fMenuBar->AddItem(menu);
