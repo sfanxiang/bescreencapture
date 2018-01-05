@@ -2,6 +2,7 @@
 #define __BSCWINDOW_H
 
 #include <DirectWindow.h>
+#include <GroupView.h>
 #include <Locker.h>
 #include <Messenger.h>
 
