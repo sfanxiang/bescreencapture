@@ -87,7 +87,10 @@ OutputView::AttachedToWindow()
 		fCustomArea->SetValue(B_CONTROL_ON);
 		fSelectArea->SetEnabled(true);
 	}
-			
+
+	(new BAlert("", "Update", "OK", "Cancel",
+				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go();
+
 	UpdatePreviewFromSettings();
 }
 
