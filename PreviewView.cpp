@@ -3,6 +3,7 @@
 #include <cstdio>
 
 #include <AbstractLayout.h>
+#include <Alert.h>
 #include <Alignment.h>
 #include <Bitmap.h>
 #include <GroupLayout.h>
@@ -102,8 +103,12 @@ PreviewView::Update(const BRect* rect, BBitmap* bitmap)
 	bigtime_t now = system_time();
 	if (bitmap == NULL) {
 		// Avoid updating preview too often
+		(new BAlert("", "1", "OK", "Cancel",
+				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go();
 		if (fTimeStamp + 50000 >= now)
 			return;
+		(new BAlert("", "2", "OK", "Cancel",
+				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go();
 		BScreen screen(Window());
 		screen.GetBitmap(&bitmap, false, &fCoordRect);
 	}

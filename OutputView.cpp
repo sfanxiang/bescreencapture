@@ -7,7 +7,6 @@
 #include "SizeControl.h"
 #include "Utils.h"
 
-#include <Alert.h>
 #include <Alignment.h>
 #include <Bitmap.h>
 #include <Box.h>
@@ -244,9 +243,6 @@ void
 OutputView::UpdatePreviewFromSettings()
 {
 	BRect rect = Settings().CaptureArea();
-	BString str; str << rect.top << "," << rect.left << " " << rect.bottom << "," << rect.right;
-	(new BAlert("", str.String(), "OK", "Cancel",
-			NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go();
 	if (!rect.IsValid())
 		rect = BScreen().Frame();
 	fRectView->Update(&rect);
