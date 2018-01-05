@@ -2,6 +2,7 @@
 #define __BSCWINDOW_H
 
 #include <DirectWindow.h>
+#include <GroupView.h>
 #include <Locker.h>
 #include <Messenger.h>
 
@@ -45,6 +46,10 @@ private:
 	BTabView *fTabView;
 	BButton *fStartStopButton;
 	CamStatusView *fCamStatus;
+
+	BGroupView* outputGroup;
+	BGroupView* advancedGroup;
+	BGroupView* infoGroup;
 	
 	bool fCapturing;
 	BMessenger fAddonMessenger;

@@ -67,7 +67,7 @@ BSCWindow::BSCWindow()
 			.End()
 		.End();
 
-	BGroupView* outputGroup = new BGroupView(B_HORIZONTAL);
+	outputGroup = new BGroupView(B_HORIZONTAL);
 	outputGroup->SetName("Capture");
 	outputGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -75,7 +75,7 @@ BSCWindow::BSCWindow()
 	BLayoutBuilder::Group<>(outputGroup)
 		.Add(outputView);
 
-	BGroupView* advancedGroup = new BGroupView(B_HORIZONTAL);
+	advancedGroup = new BGroupView(B_HORIZONTAL);
 	advancedGroup->SetName("Options");
 	advancedGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -83,7 +83,7 @@ BSCWindow::BSCWindow()
 	BLayoutBuilder::Group<>(advancedGroup)
 		.Add(advancedView);
 
-	BGroupView* infoGroup = new BGroupView(B_HORIZONTAL);
+	infoGroup = new BGroupView(B_HORIZONTAL);
 	infoGroup->SetName("Info");
 	infoGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -156,6 +156,35 @@ BSCWindow::MessageReceived(BMessage *message)
 	switch (message->what) {
 		case B_ABOUT_REQUESTED:
 			be_app->PostMessage(B_ABOUT_REQUESTED);
+			break;
+
+		case kResetSettings:
+			if ((new BAlert("", "Reset to default settings?", "Yes", "No",
+				NULL, B_WIDTH_AS_USUAL, B_WARNING_ALERT))->Go() == 0) {
+
+				Settings settings;
+				settings.SetDefaults();
+
+				/* reload the views */
+				BView* outputView = outputGroup->ChildAt(0);
+				BView* advancedView = advancedGroup->ChildAt(0);
+				BView* infoView = infoGroup->ChildAt(0);
+
+				outputView->RemoveSelf(); delete outputView;
+				advancedView->RemoveSelf(); delete advancedView;
+				infoView->RemoveSelf(); delete infoView;
+
+				outputView = new OutputView(fController);
+				advancedView = new AdvancedOptionsView(fController);
+				infoView = new InfoView(fController);
+
+				BLayoutBuilder::Group<>(outputGroup)
+					.Add(outputView);
+				BLayoutBuilder::Group<>(advancedGroup)
+					.Add(advancedView);
+				BLayoutBuilder::Group<>(infoGroup)
+					.Add(infoView);
+			}
 			break;
 
 		case kGUIOpenMediaWindow:
@@ -270,8 +299,13 @@ void
 BSCWindow::_BuildMenu()
 {
 	BMenu* menu = new BMenu("File");
+	BMenuItem* resetSettingsItem = new BMenuItem(
+		"Reset to default settings...", new BMessage(kResetSettings));
 	BMenuItem* aboutItem = new BMenuItem("About", new BMessage(B_ABOUT_REQUESTED));
 	BMenuItem* quitItem = new BMenuItem("Quit", new BMessage(B_QUIT_REQUESTED));
+
+	menu->AddItem(resetSettingsItem);
+	menu->AddSeparatorItem();
 	menu->AddItem(aboutItem);
 	menu->AddItem(quitItem);
 	fMenuBar->AddItem(menu);

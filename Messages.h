@@ -12,7 +12,8 @@ enum appMessages {
 	kEncodingFinished,
 	kEncodingProgress,
 	kFileNameChanged,
-	kMsgGetControllerMessenger
+	kMsgGetControllerMessenger,
+	kResetSettings
 };
 
 
