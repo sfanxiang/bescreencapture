@@ -175,7 +175,7 @@ BSCWindow::MessageReceived(BMessage *message)
 				infoView->RemoveSelf(); delete infoView;
 
 				outputView = new OutputView(fController);
-				advancedView = new AdvancedView(fController);
+				advancedView = new AdvancedOptionsView(fController);
 				infoView = new InfoView(fController);
 
 				BLayoutBuilder::Group<>(outputGroup)
