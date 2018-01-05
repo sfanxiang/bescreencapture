@@ -166,6 +166,7 @@ BSCWindow::MessageReceived(BMessage *message)
 				settings.SetDefaults();
 				// TODO
 			}
+			break;
 
 		case kGUIOpenMediaWindow:
 			(new OptionsWindow(fController))->Show();
