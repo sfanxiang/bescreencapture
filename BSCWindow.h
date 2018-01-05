@@ -45,6 +45,10 @@ private:
 	BTabView *fTabView;
 	BButton *fStartStopButton;
 	CamStatusView *fCamStatus;
+
+	BGroupView* outputGroup;
+	BGroupView* advancedGroup;
+	BGroupView* infoGroup;
 	
 	bool fCapturing;
 	BMessenger fAddonMessenger;

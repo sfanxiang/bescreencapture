@@ -67,7 +67,7 @@ BSCWindow::BSCWindow()
 			.End()
 		.End();
 
-	BGroupView* outputGroup = new BGroupView(B_HORIZONTAL);
+	outputGroup = new BGroupView(B_HORIZONTAL);
 	outputGroup->SetName("Capture");
 	outputGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -75,7 +75,7 @@ BSCWindow::BSCWindow()
 	BLayoutBuilder::Group<>(outputGroup)
 		.Add(outputView);
 
-	BGroupView* advancedGroup = new BGroupView(B_HORIZONTAL);
+	advancedGroup = new BGroupView(B_HORIZONTAL);
 	advancedGroup->SetName("Options");
 	advancedGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -83,7 +83,7 @@ BSCWindow::BSCWindow()
 	BLayoutBuilder::Group<>(advancedGroup)
 		.Add(advancedView);
 
-	BGroupView* infoGroup = new BGroupView(B_HORIZONTAL);
+	infoGroup = new BGroupView(B_HORIZONTAL);
 	infoGroup->SetName("Info");
 	infoGroup->GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING,
 		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
@@ -164,7 +164,10 @@ BSCWindow::MessageReceived(BMessage *message)
 
 				Settings settings;
 				settings.SetDefaults();
-				// TODO
+
+				outputGroup.RemoveChild(outputGroup.ChildAt(0));
+				advancedGroup.RemoveChild(advancedGroup.ChildAt(0));
+				infoGroup.RemoveChild(infoGroup.ChildAt(0));
 			}
 			break;
 
