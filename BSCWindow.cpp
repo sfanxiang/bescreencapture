@@ -165,9 +165,9 @@ BSCWindow::MessageReceived(BMessage *message)
 				Settings settings;
 				settings.SetDefaults();
 
-				outputGroup.RemoveChild(outputGroup.ChildAt(0));
-				advancedGroup.RemoveChild(advancedGroup.ChildAt(0));
-				infoGroup.RemoveChild(infoGroup.ChildAt(0));
+				outputGroup->RemoveChild(outputGroup->ChildAt(0));
+				advancedGroup->RemoveChild(advancedGroup->ChildAt(0));
+				infoGroup->RemoveChild(infoGroup->ChildAt(0));
 			}
 			break;
 
