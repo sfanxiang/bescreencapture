@@ -165,9 +165,25 @@ BSCWindow::MessageReceived(BMessage *message)
 				Settings settings;
 				settings.SetDefaults();
 
-				outputGroup->RemoveChild(outputGroup->ChildAt(0));
-				advancedGroup->RemoveChild(advancedGroup->ChildAt(0));
-				infoGroup->RemoveChild(infoGroup->ChildAt(0));
+				/* reload the views */
+				BView* outputView = outputGroup->ChildAt(0);
+				BView* advancedView = advancedGroup->ChildAt(0);
+				BView* infoView = infoGroup->ChildAt(0);
+
+				outputView.RemoveSelf(); delete outputView;
+				advancedView.RemoveSelf(); delete advancedView;
+				infoView.RemoveSelf(); delete infoView;
+
+				outputView = new OutputView(fController);
+				advancedView = new AdvancedView(fController);
+				infoView = new InfoView(fController);
+
+				BLayoutBuilder::Group<>(outputGroup)
+					.Add(outputView);
+				BLayoutBuilder::Group<>(advancedGroup)
+					.Add(advancedView);
+				BLayoutBuilder::Group<>(infoGroup)
+					.Add(infoView);
 			}
 			break;
 
