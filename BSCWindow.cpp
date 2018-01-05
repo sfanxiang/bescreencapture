@@ -186,7 +186,7 @@ BSCWindow::MessageReceived(BMessage *message)
 					.Add(infoView);
 
 				static_cast<OutputView*>(outputView)
-					->updatePreviewFromSettings();
+					->UpdatePreviewFromSettings();
 			}
 			break;
 
