@@ -1,6 +1,8 @@
 #ifndef __SETTINGS_H
 #define __SETTINGS_H
 
+#include "BSCWindow.h"
+
 #include <Locker.h>
 #include <GraphicsDefs.h>
 #include <Rect.h>
@@ -69,7 +71,9 @@ private:
 	static status_t SetDefaults();
 	
 	BMessage *fSettings;
-	BLocker fLocker;	
+	BLocker fLocker;
+
+	friend void BSCWindow::MessageReceived(BMessage *message);
 };
 
 #endif
