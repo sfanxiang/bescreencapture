@@ -174,11 +174,14 @@ BSCWindow::MessageReceived(BMessage *message)
 				advancedView->RemoveSelf(); delete advancedView;
 				infoView->RemoveSelf(); delete infoView;
 
+<<<<<<< HEAD
 				gControllerLooper->Lock();
 				gControllerLooper->Quit();
 				gControllerLooper = new Controller();
 				fController = dynamic_cast<Controller*>(gControllerLooper);
 
+=======
+>>>>>>> cdff39f3cfd5f3bab0879dae95040fb802053058
 				outputView = new OutputView(fController);
 				advancedView = new AdvancedOptionsView(fController);
 				infoView = new InfoView(fController);
@@ -189,8 +192,11 @@ BSCWindow::MessageReceived(BMessage *message)
 					.Add(advancedView);
 				BLayoutBuilder::Group<>(infoGroup)
 					.Add(infoView);
+<<<<<<< HEAD
 
 				PostMessage(kSelectionWindowClosed);
+=======
+>>>>>>> cdff39f3cfd5f3bab0879dae95040fb802053058
 			}
 			break;
 
