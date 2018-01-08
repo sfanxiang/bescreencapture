@@ -40,6 +40,8 @@ const static int32 kMsgTextControlSizeChanged = 'TCSC';
 const static int32 kScaleChanged = 'ScCh';
 const static uint32 kWindowBorderFrameChanged = 'WbFc';
 
+PreviewView *OutputView::fRectView = NULL;
+
 OutputView::OutputView(Controller *controller)
 	:
 	BView("Capture Options", B_WILL_DRAW),
@@ -47,6 +49,12 @@ OutputView::OutputView(Controller *controller)
 	fClassicLayout(true)
 {
 	_LayoutView(fClassicLayout);
+}
+
+
+OutputView::~OutputView()
+{
+	if (fRectView) fRectView->RemoveSelf();
 }
 
 
@@ -300,7 +308,7 @@ OutputView::_LayoutView(bool classic)
 					.Add(fSelectArea)
 					.AddStrut(20)
 				.End()
-				.Add(fRectView = new PreviewView())
+				.Add(fRectView ? fRectView : fRectView = new PreviewView())
 			.End()
 			.Add(fBorderSlider)
 		.End()

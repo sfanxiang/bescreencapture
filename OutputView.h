@@ -21,6 +21,7 @@ class SizeControl;
 class OutputView : public BView {
 public:	
 	OutputView(Controller *controller);
+	~OutputView();
 
 	virtual void AttachedToWindow();
 	virtual void MessageReceived(BMessage *message);
@@ -44,14 +45,16 @@ private:
 	BRadioButton *fCustomArea;
 	BRadioButton *fWindow;
 	
-	PreviewView *fRectView;
 	BRect fCustomCaptureRect;
 
 	SizeControl* fScaleSlider;
 	SizeControl* fBorderSlider;
 
 	bool fClassicLayout;
-	
+
+	// do not reload fRectView
+	static PreviewView *fRectView;
+
 	void _LayoutView(bool classic);
 	void _SetFileNameExtension(const char* extension);
 	void _UpdatePreview(BRect* rect, BBitmap* bitmap = NULL);

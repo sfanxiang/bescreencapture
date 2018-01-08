@@ -174,6 +174,11 @@ BSCWindow::MessageReceived(BMessage *message)
 				advancedView->RemoveSelf(); delete advancedView;
 				infoView->RemoveSelf(); delete infoView;
 
+				gControllerLooper->Lock();
+				gControllerLooper->Quit();
+				gControllerLooper = new Controller();
+				fController = dynamic_cast<Controller*>(gControllerLooper);
+
 				outputView = new OutputView(fController);
 				advancedView = new AdvancedOptionsView(fController);
 				infoView = new InfoView(fController);
